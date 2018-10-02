@@ -10,3 +10,4 @@ struct.o: struct.c struct.h
 
 clean:
 	rm *.o
+	rm struct
