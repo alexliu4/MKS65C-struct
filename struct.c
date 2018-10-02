@@ -9,16 +9,19 @@ void rand_location() {
   char *array[5];
   array[0] = "America";
   array[1] = "Hogwarts";
-  array[3] = "Stuyvesant";
+  array[2] = "Stuyvesant";
+  array[3] = "Nakatomi Plaza";
+  array[4] = "";
   time_t t = time(NULL);
   srand(t);
-  printf("%s\n", array[rand() % 3]);
+  printf("%s\n", array[rand() % 5]);
 }
 
 struct location take_over_location(struct location f, char *new_leader) {
   f.leader = new_leader;
   return f;
 }
+
 void print_location(struct location f) {
   printf("%s is led by %s\n", f.name, f.leader);
 }
@@ -30,7 +33,6 @@ int main() {
   print_location(p);
   p = take_over_location(p, "Thanos");
   print_location(p);
-
   rand_location();
   return 0;
 }
