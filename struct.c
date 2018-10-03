@@ -17,7 +17,7 @@ char villians[10][30] =
 struct location rand_location() {
   struct location temp;
   strcpy(temp.name, names[rand() % 10]);
-  strcpy(temp.villian, villian[rand() % 10]); 
+  strcpy(temp.villian, villians[rand() % 10]); 
   temp.population = rand() % 10000;
   return temp;
 }
