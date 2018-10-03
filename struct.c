@@ -1,35 +1,36 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <string.h>
 
 typedef struct {
-    char *name;
-    char *leader;
+    char name[30];
+    char leader[30];
     unsigned int population;
 } location;
 
-char *names[5] = 
+char names[5][30] = 
   {"America", "Hogwarts", "Stuyvesant", "Nakatomi Plaza", "Area 51"};
-char *leaders[5] = 
+char leaders[5][30] = 
   {"Darth Vader", "Donald Trump", "Mr. Konstantinovich", "Bernie Sanders", "Sauron"};
 
 location rand_location() {
   location temp;
-  temp.name = names[rand() % 5];
-  temp.leader = leaders[rand() % 5]; 
+  strcpy(temp.name, names[rand() % 5]);
+  strcpy(temp.leader, leaders[rand() % 5]); 
   temp.population = rand() % 10000;
   return temp;
 }
 
 location conquer(location *p, char *new_leader) {
-  p->leader = new_leader;
+  strcpy(p->leader, new_leader);
   p->population *= ((float)rand() / RAND_MAX);
   return *p;
 }
 
 void print_location(location loc) {
-  printf("%s is controlled by %s and has a population of %d\n"
-          , loc.name, loc.leader, loc.population);
+  printf("%s is controlled by %s and has a population of %d\n",
+          loc.name, loc.leader, loc.population);
 }
 
 int main() {
