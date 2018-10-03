@@ -3,45 +3,43 @@
 #include <time.h>
 #include <string.h>
 
-typedef struct {
+struct location {
     char name[30];
     char leader[30];
     unsigned int population;
-} location;
+};
 
-char names[5][30] = 
-  {"America", "Hogwarts", "Stuyvesant", "Nakatomi Plaza", "Area 51"};
-char leaders[5][30] = 
-  {"Darth Vader", "Donald Trump", "Mr. Konstantinovich", "Bernie Sanders", "Sauron"};
+char names[10][30] = 
+  {"America", "Hogwarts", "Stuyvesant", "Nakatomi Plaza", "Area 51", "Middle Earth", "Gondor", "Gotham", "Asgard", "Brooklyn 99 Precint"};
+char leaders[10][30] = 
+  {"Darth Vader", "Donald Trump", "Mr. Konstantinovich", "Bernie Sanders", "Sauron", "Hans Gruber", "Joker",
+  "Loki", "Bane", "Chief Deputy Wuntch"};
 
-location rand_location() {
-  location temp;
-  strcpy(temp.name, names[rand() % 5]);
-  strcpy(temp.leader, leaders[rand() % 5]); 
+struct location rand_location() {
+  struct location temp;
+  strcpy(temp.name, names[rand() % 10]);
+  strcpy(temp.leader, leaders[rand() % 10]); 
   temp.population = rand() % 10000;
   return temp;
 }
 
-location conquer(location *p, char *new_leader) {
+void conquer(struct location *p, char *new_leader) {
   strcpy(p->leader, new_leader);
   p->population *= ((float)rand() / RAND_MAX);
-  return *p;
 }
 
-void print_location(location loc) {
+void print_location(struct location loc) {
   printf("%s is controlled by %s and has a population of %d\n",
           loc.name, loc.leader, loc.population);
 }
 
 int main() {
   srand(time(NULL));
-  location p = rand_location();
+  struct location p = rand_location();
   print_location(p);
-  print_location(conquer(&p, "Mr. Peanut"));
-  print_location(conquer(&p, "Paul McCartney"));
-  location q = rand_location();
-  print_location(q);
-  print_location(conquer(&q, "Barry Allen"));
-  print_location(conquer(&q, "Phil Swift"));
+  conquer(&p, "Mr. Peanut");
+  print_location(p);
+  conquer(&p, "Paul McCartney"); 
+  print_location(p);
   return 0;
 }
