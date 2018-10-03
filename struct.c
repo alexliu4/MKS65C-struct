@@ -9,15 +9,15 @@ struct location {
     unsigned int population;
 };
 
-char names[10][30] = 
-  {"America", "Hogwarts", "Stuyvesant", "Nakatomi Plaza", "Area 51", "Middle Earth", "Gondor", "Gotham", "Asgard", "Brooklyn 99 Precint"};
-char villians[10][30] = 
+char names[10][30] =
+  {"America", "Hogwarts", "Stuyvesant", "Nakatomi Plaza", "Area 51", "Middle Earth", "Gondor", "Gotham", "Asgard", "Brooklyn 99 Precinct"};
+char villians[10][30] =
   {"Darth Vader", "Donald Trump", "Mr. Konstantinovich", "Bernie Sanders", "Sauron", "Hans Gruber", "Joker", "Loki", "Bane", "Chief Deputy Wuntch"};
 
 struct location rand_location() {
   struct location temp;
   strcpy(temp.name, names[rand() % 10]);
-  strcpy(temp.villian, villians[rand() % 10]); 
+  strcpy(temp.villian, villians[rand() % 10]);
   temp.population = rand() % 10000;
   return temp;
 }
@@ -42,7 +42,7 @@ int main() {
   print_location(p);
   conquer(&p, "Mr. Peanut");
   print_location(p);
-  conquer(&p, "Paul McCartney"); 
+  conquer(&p, "Paul McCartney");
   rename_location(&p);
   print_location(p);
   return 0;
